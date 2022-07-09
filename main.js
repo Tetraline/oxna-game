@@ -27,15 +27,17 @@ const handleClick = (event) => {
     handleClickHorizontal(event.target, x1, y1, x2, y2);
   }
   //check for win condition
-  let player = document.querySelector("#PLAYER");
-  // There is a bug here somewhere
-  let { px1, py1, px2, py2 } = getCoordinatesFromElement(player);
-  console.log(px2);
-  if (px2 == 4) {
+  let player = document.querySelector("#player");
+  let c = getCoordinatesFromElement(player);
+  if (c.x2 == 4) {
+    player.style.left = "200%";
     console.log("YOU WIN");
-    levelNumber = document.querySelector("#level-number");
-    ++levelNumber.innerHTML;
-    drawVehicles(importLevel(levels[+levelNumber.innerHTMl]));
+    new Promise((resolve) => setTimeout(resolve, 500)).then(() =>
+      drawVehicles(importLevel(levels[0]))
+    );
+    //levelNumber = document.querySelector("#level-number");
+    //++levelNumber.innerHTML;
+    //drawVehicles(importLevel(levels[+levelNumber.innerHTMl]));
   }
 };
 
@@ -142,9 +144,6 @@ const drawVehicles = (vehicles) => {
   gameContainer.innerHTML = "";
   vehicles.forEach((v, i) => {
     let newDiv = document.createElement("div");
-    if (i == 0) {
-      newDiv.id = "PLAYER";
-    }
     if (v.y1 > v.y2 || v.x1 > v.x2) {
       console.error(
         `Vehicle (${v.x1},${v.y1}),(${v.x2},${v.y2}) has backwards coordinates!`
@@ -174,7 +173,13 @@ const drawVehicles = (vehicles) => {
       newDiv.classList.add("horizontal");
     }
     backgroundImage += ".png";
-    newDiv.style.backgroundImage = backgroundImage;
+    // If we are drawing the player, give it the player background image and id
+    if (i == 0) {
+      newDiv.id = "player";
+      newDiv.style.backgroundImage = `url("/data-and-images/player.png")`;
+    } else {
+      newDiv.style.backgroundImage = backgroundImage;
+    }
     //newDiv.innerText = `(${v.x1},${v.y1}),(${v.x2},${v.y2})`;
     newDiv.classList.add("vehicle");
     gameContainer.appendChild(newDiv);
