@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.meter-container {
+  width: 225px;
+  height: 75px;
+}
+
+.meter-outer {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(60, 60, 60);
+  padding: 5%;
+  padding-right: 20%;
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+}
+
+.meter {
+  position: relative;
+  background-color: rgb(110, 110, 110);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+
+  > * {
+    color: red;
+    font-family: "VT323", monospace;
+    position: absolute;
+  }
+}
+
+.meter__status {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  left: 10%;
+  top: 10%;
+  font-size: 50%;
+}
+
+body > div > div > div > ul.meter__status > li:nth-child(3),
+body > div > div > div > ul.meter__status > li:nth-child(1) {
+  color: grey;
+}
+
+.meter__price {
+  left: 60%;
+  font-size: 180%;
+}
+
+.meter__button-labels {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: lightgray;
+  font-family: "Bebas Neue", cursive;
+  position: absolute;
+  left: 81%;
+  > * {
+    margin: 10px;
+  }
+  font-size: 9px;
+  line-height: 5px;
+  top: 7%;
+}
+
+.meter-buttons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  position: absolute;
+  left: 100%;
+  top: 5%;
+}
+
+.meter-buttons > * {
+  height: 5px;
+  width: 5px;
+  margin-top: 10px;
+  background-color: grey;
+  top: 6%;
+}

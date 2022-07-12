@@ -1,5 +1,11 @@
 const gameContainer = document.querySelector(".game");
 
+const incrementMeter = () => {
+  const meter = document.querySelector(".meter__price");
+  let meterValue = +meter.innerText;
+  meterValue += 1;
+  meter.innerText = meterValue + ".00";
+};
 const getCoordinatesFromElement = (v) => {
   // Convert all the properties from strings to numbers
   let left = +v.style.left.replace("%", "");
@@ -27,8 +33,8 @@ const handleClick = (event) => {
     handleClickHorizontal(event.target, x1, y1, x2, y2);
   }
   //check for win condition
-  let player = document.querySelector("#player");
-  let c = getCoordinatesFromElement(player);
+  const player = document.querySelector("#player");
+  const c = getCoordinatesFromElement(player);
   if (c.x2 == 4) {
     player.style.left = "200%";
     console.log("YOU WIN");
@@ -43,6 +49,7 @@ const handleClick = (event) => {
 
 const handleClickVertical = (vehicle, x1, y1, x2, y2) => {
   let board = getBoardState();
+  let success = true;
   // 1) Can we move up?
   // 2) Can we move down?
   // 3) Otherwise, we cannot move.
@@ -64,11 +71,15 @@ const handleClickVertical = (vehicle, x1, y1, x2, y2) => {
       // Do not compensate for vehicle length since y1 is already the bottom coord
       vehicle.style.bottom = `${20 * newY1}%`;
     } else {
+      success = false;
       vehicle.classList.add("shake");
       new Promise((resolve) => setTimeout(resolve, 250)).then(() =>
         vehicle.classList.remove("shake")
       );
     }
+  }
+  if (success) {
+    incrementMeter();
   }
 };
 
@@ -77,6 +88,7 @@ const handleClickHorizontal = (vehicle, x1, y1, x2, y2) => {
   // 2) Can we move left?
   // 3) Otherwise, we cannot move.
   let board = getBoardState();
+  let success = true;
   if (isValidSpace(board, x2 + 1, y2)) {
     let newX2 = x2 + 1;
     while (isValidSpace(board, newX2, y2)) {
@@ -96,10 +108,14 @@ const handleClickHorizontal = (vehicle, x1, y1, x2, y2) => {
       vehicle.style.left = `${20 * newX1}%`;
     } else {
       vehicle.classList.add("shake");
+      success = false;
       new Promise((resolve) => setTimeout(resolve, 250)).then(() =>
         vehicle.classList.remove("shake")
       );
     }
+  }
+  if (success) {
+    incrementMeter();
   }
 };
 
