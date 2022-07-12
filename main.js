@@ -1,11 +1,20 @@
 const gameContainer = document.querySelector(".game");
 
+const drawGameOver = () => {
+  gameContainer.style.backgroundColor = "black";
+  gameContainer.innerHTML = `
+    <p>Final Score <br>${+document.querySelector(".meter__price")
+      .innerText} </p>
+  `;
+};
+
 const incrementMeter = () => {
   const meter = document.querySelector(".meter__price");
   let meterValue = +meter.innerText;
   meterValue += 1;
   meter.innerText = meterValue + ".00";
 };
+
 const getCoordinatesFromElement = (v) => {
   // Convert all the properties from strings to numbers
   let left = +v.style.left.replace("%", "");
@@ -37,10 +46,16 @@ const handleClick = (event) => {
   const c = getCoordinatesFromElement(player);
   if (c.x2 == 4) {
     player.style.left = "200%";
-    console.log("YOU WIN");
-    new Promise((resolve) => setTimeout(resolve, 500)).then(() =>
-      drawVehicles(importLevel(levels[0]))
-    );
+    const nextLevel = ++document.querySelector(".level").innerText;
+    if (nextLevel < 5) {
+      new Promise((resolve) => setTimeout(resolve, 500)).then(() =>
+        drawVehicles(importLevel(levels[nextLevel]))
+      );
+    } else {
+      new Promise((resolve) => setTimeout(resolve, 500)).then(() =>
+        drawGameOver()
+      );
+    }
     //levelNumber = document.querySelector("#level-number");
     //++levelNumber.innerHTML;
     //drawVehicles(importLevel(levels[+levelNumber.innerHTMl]));
@@ -135,7 +150,10 @@ const getBoardState = () => {
   vehicleElements.forEach((v) => {
     let { x1, y1, x2, y2 } = getCoordinatesFromElement(v);
     // Mark as occupied
-    board[x1][y1] = true;
+    if (x1 >= 0) {
+      // The player car sometimes starts with a negative x1
+      board[x1][y1] = true;
+    }
     // Mark as occupied
     board[x2][y2] = true;
     // If length = 3, find the coordinates of the middle location
@@ -226,6 +244,7 @@ const importLevel = (level) => {
 import levels from "./data-and-images/levels.js";
 
 drawVehicles(importLevel(levels[0]));
+
 //function logKey(e) {
 //  console.log("NEW");
 //  board = getBoardState();
