@@ -1,5 +1,3 @@
-const gameContainer = document.querySelector(".game");
-
 const drawGameOver = () => {
   gameContainer.style.backgroundColor = "black";
   gameContainer.innerHTML = `
@@ -47,7 +45,7 @@ const handleClick = (event) => {
   if (c.x2 == 4) {
     player.style.left = "200%";
     const nextLevel = ++document.querySelector(".level").innerText;
-    if (nextLevel < 5) {
+    if (nextLevel < 6) {
       new Promise((resolve) => setTimeout(resolve, 500)).then(() =>
         drawVehicles(importLevel(levels[nextLevel]))
       );
@@ -241,10 +239,22 @@ const importLevel = (level) => {
   });
   return vehicles;
 };
+
 import levels from "./data-and-images/levels.js";
+const gameContainer = document.querySelector(".game");
 
 drawVehicles(importLevel(levels[0]));
 
+let newDiv = document.createElement("div");
+newDiv.innerHTML = `
+        <h1>Crazy <br> Taxi</h1>
+        <small>Tap the taxi to get started!</small>
+`;
+newDiv.classList.add("title-screen");
+newDiv.style.position = "absolute";
+newDiv.style.fontSize = "10rem";
+newDiv.style.textAlign = "center";
+gameContainer.insertBefore(newDiv, gameContainer.firstChild);
 //function logKey(e) {
 //  console.log("NEW");
 //  board = getBoardState();

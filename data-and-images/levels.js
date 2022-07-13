@@ -1,6 +1,7 @@
 // The first car must be the car that we are trying to escape!
 // Cars coordinates are defined: [x1,y1,x2,y2]
 export const levels = [
+  [[0, 2, 1, 2]],
   [
     [0, 2, 1, 2],
     [2, 2, 2, 3],
