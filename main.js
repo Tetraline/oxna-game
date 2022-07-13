@@ -209,7 +209,6 @@ const drawVehicles = (vehicles) => {
     // If we are drawing the player, give it the player background image and id
     if (i == 0) {
       newDiv.id = "player";
-      newDiv.style.backgroundImage = 'url("./data-and-images/player.png")';
     } else {
       newDiv.style.backgroundImage = backgroundImage;
     }

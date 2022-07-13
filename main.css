@@ -55,7 +55,7 @@
           animation-iteration-count: infinite;
 }
 .game #player {
-  background-image: url("/data-and-images/player.png");
+  background-image: url("./data-and-images/player.png");
 }
 .game p {
   color: red;
