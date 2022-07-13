@@ -1,18 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-
 .game {
   width: 100vw;
   height: 100vw;
   margin: auto;
-  position: relative;
   border: 1px solid black;
+  position: relative;
   background-color: grey;
 
   .vehicle {
     position: absolute;
     transition: 0.5s;
-    //background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -35,12 +31,8 @@
   }
   p {
     color: red;
-    font-family: "VT323", monospace;
     font-size: 4rem;
     text-align: center;
-  }
-  h1 {
-    font-family: "Bebas Neue", cursive;
   }
   .title-screen {
     width: 100%;

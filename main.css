@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 * {
@@ -12,12 +13,23 @@
   font-family: "Roboto", sans-serif;
 }
 
+.game h1 {
+  font-family: "Bebas Neue", cursive;
+}
+.game p {
+  font-family: "VT323", monospace;
+}
+
+.meter > * {
+  font-family: "VT323", monospace;
+}
+
 .game {
   width: 100vw;
   height: 100vw;
   margin: auto;
-  position: relative;
   border: 1px solid black;
+  position: relative;
   background-color: grey;
 }
 .game .vehicle {
@@ -47,9 +59,17 @@
 }
 .game p {
   color: red;
-  font-family: "VT323", monospace;
   font-size: 4rem;
   text-align: center;
+}
+.game .title-screen {
+  width: 100%;
+}
+.game .title-screen h1 {
+  font-size: 41vw;
+}
+.game .title-screen small {
+  font-size: 8vw;
 }
 
 @-webkit-keyframes shake {
@@ -165,7 +185,6 @@
 }
 .meter > * {
   color: red;
-  font-family: "VT323", monospace;
   position: absolute;
 }
 
