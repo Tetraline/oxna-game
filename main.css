@@ -64,12 +64,28 @@
 }
 .game .title-screen {
   width: 100%;
+  overflow: auto;
 }
 .game .title-screen h1 {
   font-size: 41vw;
 }
 .game .title-screen small {
   font-size: 8vw;
+}
+@media only screen and (min-width: 500px) {
+  .game {
+    width: 500px;
+    height: 500px;
+  }
+  .game .title-screen {
+    width: 500px;
+  }
+  .game .title-screen h1 {
+    font-size: 205px;
+  }
+  .game .title-screen small {
+    font-size: 40px;
+  }
 }
 
 @-webkit-keyframes shake {
@@ -163,6 +179,11 @@
   width: 225px;
   height: 75px;
   margin-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .meter-container {
+    margin: auto;
+  }
 }
 
 .meter-outer {

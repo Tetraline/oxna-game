@@ -5,6 +5,9 @@
   width: 225px;
   height: 75px;
   margin-top: 10px;
+  @media only screen and (min-width: 500px) {
+    margin: auto;
+  }
 }
 
 .meter-outer {

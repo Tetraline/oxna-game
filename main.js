@@ -103,6 +103,7 @@ const handleClickHorizontal = (vehicle, x1, y1, x2, y2) => {
   let board = getBoardState();
   let success = true;
   if (isValidSpace(board, x2 + 1, y2)) {
+    document.querySelector(".game").style.overflow = "hidden";
     let newX2 = x2 + 1;
     while (isValidSpace(board, newX2, y2)) {
       newX2 += 1;
