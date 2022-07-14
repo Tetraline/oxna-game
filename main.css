@@ -64,13 +64,18 @@
 }
 .game .title-screen {
   width: 100%;
+  height: 200%;
   overflow: auto;
+  position: absolute;
+  text-align: center;
 }
 .game .title-screen h1 {
   font-size: 41vw;
 }
 .game .title-screen small {
   font-size: 8vw;
+  position: relative;
+  top: 90px;
 }
 @media only screen and (min-width: 500px) {
   .game {

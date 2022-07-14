@@ -36,12 +36,17 @@
   }
   .title-screen {
     width: 100%;
+    height: 200%;
     overflow: auto;
+    position: absolute;
+    text-align: center;
     h1 {
       font-size: 41vw;
     }
     small {
       font-size: 8vw;
+      position: relative;
+      top: 90px;
     }
   }
   @media only screen and (min-width: 500px) {

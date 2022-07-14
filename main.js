@@ -251,20 +251,4 @@ newDiv.innerHTML = `
         <small>Tap the taxi to get started!</small>
 `;
 newDiv.classList.add("title-screen");
-newDiv.style.position = "absolute";
-newDiv.style.fontSize = "10rem";
-newDiv.style.textAlign = "center";
 gameContainer.insertBefore(newDiv, gameContainer.firstChild);
-//function logKey(e) {
-//  console.log("NEW");
-//  board = getBoardState();
-//  for (let x = 0; x < board.length; x++) {
-//    for (let y = 0; y < board[x].length; y++) {
-//      if (board[x][y]) {
-//        console.log(`I see a car at ${x}, ${y}!`);
-//      }
-//    }
-//  }
-//}
-
-//document.addEventListener("keypress", logKey);
