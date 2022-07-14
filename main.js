@@ -249,9 +249,8 @@ const drawVehicles = (vehicles) => {
  * Create a vehicle object from a vehicles information.
  * @return {object} A vehicle
  */
-const generateVehicle = (sprite, x1, y1, x2, y2) => {
+const generateVehicle = (x1, y1, x2, y2) => {
   return {
-    sprite: sprite,
     x1: x1,
     y1: y1,
     x2: x2,
@@ -267,7 +266,7 @@ const generateVehicle = (sprite, x1, y1, x2, y2) => {
 const importLevel = (level) => {
   let vehicles = [];
   level.forEach((v) => {
-    vehicles.push(generateVehicle("a", v[0], v[1], v[2], v[3]));
+    vehicles.push(generateVehicle(v[0], v[1], v[2], v[3]));
   });
   return vehicles;
 };
