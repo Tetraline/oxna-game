@@ -1,3 +1,6 @@
+/**
+ * Draw game over screen
+ */
 const drawGameOver = () => {
   gameContainer.style.backgroundColor = "black";
   gameContainer.innerHTML = `
@@ -6,6 +9,9 @@ const drawGameOver = () => {
   `;
 };
 
+/**
+ * Increment the meter (score) by one
+ */
 const incrementMeter = () => {
   const meter = document.querySelector(".meter__price");
   let meterValue = +meter.innerText;
@@ -13,6 +19,11 @@ const incrementMeter = () => {
   meter.innerText = meterValue + ".00";
 };
 
+/**
+ * Given a vehicle DOM element, calculate it's coordinates on the board
+ * @param {object} vehicle element
+ * @return {array} The 4 coordinates
+ */
 const getCoordinatesFromElement = (v) => {
   // Convert all the properties from strings to numbers
   let left = +v.style.left.replace("%", "");
@@ -60,12 +71,15 @@ const handleClick = (event) => {
   }
 };
 
+/**
+ * Handles a click on a veritcal car by checking:
+ * 1. Can we move up? If yes, how much?
+ * 2. Or can we move down? If yes, how much?
+ * 3. Otherwise, we cannot move.
+ */
 const handleClickVertical = (vehicle, x1, y1, x2, y2) => {
   let board = getBoardState();
   let success = true;
-  // 1) Can we move up?
-  // 2) Can we move down?
-  // 3) Otherwise, we cannot move.
   if (isValidSpace(board, x2, y2 + 1)) {
     let newY2 = y2 + 1;
     while (isValidSpace(board, x2, newY2)) {
@@ -96,10 +110,13 @@ const handleClickVertical = (vehicle, x1, y1, x2, y2) => {
   }
 };
 
+/**
+ * Handles a click on a horizontal car by checking:
+ * 1. Can we move right? If yes, how much?
+ * 2. Or can we move left? If yes, how much?
+ * 3. Otherwise, we cannot move.
+ */
 const handleClickHorizontal = (vehicle, x1, y1, x2, y2) => {
-  // 1) Can we move right?
-  // 2) Can we move left?
-  // 3) Otherwise, we cannot move.
   let board = getBoardState();
   let success = true;
   if (isValidSpace(board, x2 + 1, y2)) {
@@ -133,6 +150,13 @@ const handleClickHorizontal = (vehicle, x1, y1, x2, y2) => {
   }
 };
 
+/**
+ * Check if a particular coordinate is a valid space to move into
+ * @param {array} board The current board state
+ * @param {number} x x coordinate to check
+ * @param {number} y y coordinate to check
+ * @return {boolean} If the space is valid
+ */
 const isValidSpace = (board, x, y) => {
   if (x < 0 || y < 0 || x > 4 || y > 4) {
     return false;
@@ -140,6 +164,7 @@ const isValidSpace = (board, x, y) => {
     return !board[x][y];
   }
 };
+
 // Read the array of which grid squares are populated and which are not
 const getBoardState = () => {
   let board = Array(5)
@@ -148,12 +173,10 @@ const getBoardState = () => {
   const vehicleElements = document.querySelectorAll(".vehicle");
   vehicleElements.forEach((v) => {
     let { x1, y1, x2, y2 } = getCoordinatesFromElement(v);
-    // Mark as occupied
     if (x1 >= 0) {
       // The player car sometimes starts with a negative x1
       board[x1][y1] = true;
     }
-    // Mark as occupied
     board[x2][y2] = true;
     // If length = 3, find the coordinates of the middle location
     if (y2 - y1 > 1) {
@@ -172,7 +195,8 @@ const getBoardState = () => {
   return board;
 };
 
-// Accepts an array of vehicles and draws them all
+// Accepts an array of vehicles and draws them all on screen
+// This is only called at the start of each level
 const drawVehicles = (vehicles) => {
   gameContainer.innerHTML = "";
   vehicles.forEach((v, i) => {
@@ -212,7 +236,6 @@ const drawVehicles = (vehicles) => {
     } else {
       newDiv.style.backgroundImage = backgroundImage;
     }
-    //newDiv.innerText = `(${v.x1},${v.y1}),(${v.x2},${v.y2})`;
     newDiv.classList.add("vehicle");
     gameContainer.appendChild(newDiv);
   });
@@ -222,6 +245,10 @@ const drawVehicles = (vehicles) => {
   });
 };
 
+/**
+ * Create a vehicle object from a vehicles information.
+ * @return {object} A vehicle
+ */
 const generateVehicle = (sprite, x1, y1, x2, y2) => {
   return {
     sprite: sprite,
@@ -232,6 +259,11 @@ const generateVehicle = (sprite, x1, y1, x2, y2) => {
   };
 };
 
+/**
+ * Imports a level from a level array
+ * @param {array} level An level array of vehicle coordinates
+ * @returns {array} An array of vehicle objects
+ */
 const importLevel = (level) => {
   let vehicles = [];
   level.forEach((v) => {
