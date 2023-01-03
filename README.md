@@ -5,10 +5,10 @@ Try it out on github pages.
 ## Problem Statement
 Create a mobile-first game that runs in the browser.
 
-Technologies Used
+## Technologies Used
 - HTML
 - CSS, with SASS preprocessor
 - Javascript
 
-Screenshots
+## Screenshots
 ![](oxna-game.jpg)
