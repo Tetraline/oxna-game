@@ -1,6 +1,6 @@
 # oxna-game
 ## Live Demo
-Try it out on github pages.
+[Try it out on github pages](https://tetraline.github.io/oxna-game/)
 
 ## Problem Statement
 Create a mobile-first game that runs in the browser.
